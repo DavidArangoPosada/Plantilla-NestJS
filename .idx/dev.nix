@@ -17,7 +17,6 @@
 
     # --- Base de Datos ---
     pkgs.postgresql       # Cliente psql (para conectar manually a Cloud SQL si es necesario)
-    pkgs.cloud-sql-proxy  # <<< DESCOMENTADO: Instala el proxy de Cloud SQL
 
     # --- Utilidades Generales ---
     pkgs.git        # Control de versiones
