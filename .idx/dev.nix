@@ -1,4 +1,4 @@
-# .idx/dev.nix - Corregido con channel = "unstable"
+# .idx/dev.nix - Corregido para incluir Cloud SQL Proxy
 { pkgs, ... }: {
   # Canal de Nixpkgs (cambiado a "unstable" para mayor compatibilidad de paquetes)
   channel = "unstable";
@@ -16,8 +16,8 @@
     pkgs.google-cloud-sdk # CLI de gcloud (para auth, comandos manuales, ADC)
 
     # --- Base de Datos ---
-    pkgs.postgresql # Cliente psql (para conectar manualmente a Cloud SQL si es necesario)
-    # pkgs.cloud-sql-proxy # Descomenta si necesitas el proxy de Cloud SQL directamente
+    pkgs.postgresql       # Cliente psql (para conectar manually a Cloud SQL si es necesario)
+    pkgs.cloud-sql-proxy  # <<< DESCOMENTADO: Instala el proxy de Cloud SQL
 
     # --- Utilidades Generales ---
     pkgs.git        # Control de versiones
