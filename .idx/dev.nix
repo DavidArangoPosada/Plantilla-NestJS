@@ -1,6 +1,7 @@
+# .idx/dev.nix - Corregido con channel = "unstable"
 { pkgs, ... }: {
-  # Canal de Nixpkgs (puedes usar "stable" o "unstable")
-  channel = "stable-23.11"; # O la versión estable más reciente
+  # Canal de Nixpkgs (cambiado a "unstable" para mayor compatibilidad de paquetes)
+  channel = "unstable";
 
   # Paquetes necesarios para el desarrollo backend con NestJS, pnpm, y GCP
   packages = [
@@ -65,14 +66,15 @@
     onCreate = {
       # Instala globalmente la CLI de NestJS usando pnpm
       install-nestjs-cli = "pnpm add -g @nestjs/cli";
-      # (Opcional) Instala dependencias del proyecto si package.json ya existe
-      # install-deps = "pnpm install";
+      # La instalación de dependencias del proyecto (pnpm install) NO se ejecuta aquí.
+      # El usuario debe ejecutarla manualmente en el terminal.
     };
 
     # Se ejecuta cada vez que se inicia el espacio de trabajo
     onStart = {
       # Muestra versiones de herramientas clave (útil para depuración)
-      show-versions = "node -v && pnpm -v && nest -v && gcloud -v";
+      # Nota: 'nest -v' fallará aquí hasta que onCreate se ejecute exitosamente y el workspace se reinicie.
+      show-versions = "node -v && pnpm -v && gcloud -v";
       # (Opcional) Autenticación con gcloud si no está ya autenticado
       # check-gcloud-auth = "gcloud auth list || gcloud auth login";
     };
